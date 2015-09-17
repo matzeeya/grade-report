@@ -1,21 +1,25 @@
 {
-  "name": "seed-element",
-  "version": "1.0.2",
+  "name": "grade-report",
+  "version": "0.0.1",
   "authors": [
-    "Anonymous <anonymous@example.com>"
+    "Mattareeya Rachbuasri <matzeeya@gmail.com>"
   ],
   "description": "An element providing a solution to no problem in particular.",
   "keywords": [
     "web-component",
-    "polymer",
-    "seed"
+    "polymer"    
   ],
-  "main": "seed-element.html",
+  "main": "grade-report.html",
   "license": "http://polymer.github.io/LICENSE.txt",
-  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "homepage": "https://github.com/matzeeya/grade-report",
   "ignore": [
     "/.*",
-    "/test/"
+    "/test/",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
   ],
   "dependencies": {
     "iron-ajax": "PolymerElements/iron-ajax#~1.0.4",
