@@ -7,9 +7,9 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-<link rel="import" href="bower_components/polymer/polymer.html">
-<link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="bower_components/paper-input/paper-input.html">
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../paper-input/paper-input.html">
 
 <!--
 An element providing a solution to no problem in particular.
@@ -35,9 +35,7 @@ Example:
   </style>
     
     <iron-ajax 
-      id="getQuery"
-      auto
-      url="./demo/2557_1_303206.json"
+      id="getQuery"            
       handle-as="json"
       on-response="_handleResponse"></iron-ajax>
           
@@ -75,6 +73,9 @@ Example:
   Polymer({
       is: 'grade-report',
       properties: {
+        year: String,
+        semester: String,
+        course:String,
         plans: {
           type: Array,
           value : function() {
@@ -84,15 +85,21 @@ Example:
         }
       },
     
-      ready: function() {
-       // this.plans = [{'name':'Test'}];
-        //this.plans.push({'name':'Test'});
-        this.employees = [
-            {name: 'Bob111', last: 'Smith'},
-            {name: 'Sally', last: 'Johnson'},          
-        ];
+      ready: function() {      
       },
-       
+    
+    observers: [
+      'updateQuery(year,semester,course)'
+    ],
+    
+    updateQuery: function(year,semester,course) {      
+      var check_st = year+''+semester+''+course;
+      console.log(check_st);
+      if((/^\d{11}$/).test(check_st)) {
+        this.$.getQuery.url = "/course/"+year+"/"+semester+"/"+course;
+        this.$.getQuery.generateRequest();
+      }
+    },    
     _handleResponse: function() {
       var section_list = this.$.getQuery.lastResponse;
       var plan_dict = {};
